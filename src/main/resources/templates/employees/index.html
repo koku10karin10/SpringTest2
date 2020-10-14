@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+ th:replace="~{layout/template::layout(~{::body/content()})}">
+<head>
+<meta charset="UTF-8">
+<title>index</title>
+</head>
+<body>
+	<h2>従業員　一覧</h2>
+        <table id="employee_list">
+            <tbody>
+                <tr>
+                    <th>社員番号</th>
+                    <th>氏名</th>
+                    <th>操作</th>
+                </tr>
+                    <tr class="row${status.count % 2}" th:each="e : ${el}">
+                        <td th:text="$(e.code)">code</td>
+                        <td th:text="${e.name}">name</td>
+                        <td th:if="${e.delete_flag} == 1">
+                        	（削除ずみ）</td>
+                            
+                    </tr>
+            </tbody>
+        </table>
+
+        <div id="pagination">
+           <p th:text = "'（全'+ ${ec}+' 件）'"></p><br />
+            <!-- 
+            <div th:each = "i : ${#numbers.sequence(1,(${ec} - 1) / 15) + 1}">
+            	<div th:if="${i == page}" th:text="${i}"></div>
+            	<div th:if="${i != page}">
+            		<a th:href="@{'/employees/index?page=${i}'}" th:text="${param.id[0]"></a>&nbsp;
+            	</div>
+			</div>
+        </div> -->
+        <p><a th:href="@{'/employees/new'}">新規従業員の登録</a></p>
+	
+</body>
+</html>

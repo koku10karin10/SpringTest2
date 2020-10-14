@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http//www.thymeleaf.org" th:fragment="layout(title,body)">
+<head>
+<meta charset="UTF-8">
+<title>test2</title>
+</head>
+<body>
+	<ul th:each="test : ${tl}" >
+		<li th:text = "${test.name}"></li>
+	</ul>
+</body>
+</html>

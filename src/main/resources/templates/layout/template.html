@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http//www.thymeleaf.org" th:fragment="layout(body)">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" th:href="@{/resources/templates/css/style.css}"type="text/css" media="screeen,projection">
+<link rel="stylesheet" th:href="@{/resources/templates/css/reset.css}"type="text/css" media="screeen,projection">
+<title>日報管理システム</title>
+</head>
+<body>
+  <div id="wrapper">
+	<!-- replaceheader -->
+	<div id="header" th:replace="~{layout/header::header}"></div>
+	
+	<div id="body" th:replace="${body}"></div>
+	
+	<div id="footer" th:replace="~{layout/footer::footer}"></div>
+  </div>
+</body>
+</html>

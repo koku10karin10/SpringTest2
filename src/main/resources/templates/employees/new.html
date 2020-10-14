@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+ th:replace="~{layout/template::layout(~{::body/content()})}">
+<head>
+<meta charset="UTF-8">
+<title>new</title>
+</head>
+<body>
+	<h2>従業員　新規登録ページ</h2>
+
+        <form method="POST" th:action="@{/employees/create}">
+            <label for="code">社員番号</label><br />
+<input type="text" name="code" th:value="${employee.code}" />
+<br /><br />
+
+<label for="name">氏名</label><br />
+<input  th:text type="text" name="name" th:value="${employee.name}" />
+<br /><br />
+
+<label for="password">パスワード</label><br />
+<input type="password" name="password" />
+<br /><br />
+
+<label for="admin_flag">権限</label><br />
+<select name="admin_flag" th:object="${employee}">
+    <option th:value="0" th:selected="*{admin_flag} == 0"> 一般</option>
+    <option th:value="1" th:selected="*{admin_flag} == 1">管理者</option>
+</select>
+<br /><br />
+
+<!--  <input type="hidden" name="_token" value="${_token}" />-->
+<button type="submit">投稿</button>
+        </form>
+
+        <p><a th:href="@{'/employees/index'}">一覧に戻る</a></p>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+ th:replace="layout/template::layout(~{::body/content()})">
+<head>
+<meta charset="UTF-8">
+<title>index</title>
+</head>
+<body>
+	
+	 <div th:each = "i : ${#numbers.sequence(1,5)}" th:value="${i}">
+	 
+	 	<ul>
+	 		<li th:text = "${i}"></li>
+	 	</ul>
+	</div>
+	<p>Hello World</p>
+</body>
+</html>
