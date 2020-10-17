@@ -15,10 +15,13 @@
                     <th>操作</th>
                 </tr>
                     <tr class="row${status.count % 2}" th:each="e : ${el}">
-                        <td th:text="$(e.code)">code</td>
+                        <td th:text="${e.code}">code</td>
                         <td th:text="${e.name}">name</td>
                         <td th:if="${e.delete_flag} == 1">
                         	（削除ずみ）</td>
+                       <td th:if="${e.delete_flag} == 0">
+                       	<a th:href="@{'/employees/show?id='+${e.id}}">詳細を表示</a>
+                       </td>
                             
                     </tr>
             </tbody>

@@ -8,19 +8,17 @@ import com.models.Employee;
 import com.utility.DBUtil;
 
 @Service
-public class EmployeeCreateService {
-	public void createEmployee(Employee e) {
+public class EmployeeShowService {
+	public Employee show(int id) {
 		EntityManager em = DBUtil.createEntityManager();
 
-		em.getTransaction().begin();
-		em.persist(e);
-		em.getTransaction().commit();
-		
-		em.close();
+        Employee e = em.find(Employee.class, id);
 
-		
+        em.close();
+
+        return e;
+
+        
 	}
 
 }
-
-

@@ -8,10 +8,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.models.Employee;
 import com.service.EmployeeCreateService;
 import com.service.EmployeeIndexService;
+import com.service.EmployeeShowService;
 import com.utility.EncryptUtil;
 
 @Controller
@@ -19,7 +21,11 @@ public class EmployeeController {
 
 	@Autowired
 	private EmployeeIndexService eis;
+	@Autowired
 	private EmployeeCreateService ecs;
+	@Autowired
+	private EmployeeShowService ess;
+
 	//	private Pepper pepper;
 
 	@GetMapping("/employees/index")
@@ -66,8 +72,18 @@ public class EmployeeController {
 	public String create(Employee e) {
 		System.out.println(e.getName());
 		ecs.createEmployee(e);
-		return "employee/index";
+		return "redirect:/employees/index";
 
+	}
+
+	@GetMapping("/employees/show")
+	public String show(Model model,@RequestParam int id){
+		try {
+			model.addAttribute("e",ess.show(id));
+			return "employees/show";
+		}catch(NullPointerException npe) {
+			return "redirect:/employees/index";
+		}
 	}
 
 	@GetMapping("/test")
